@@ -13,18 +13,16 @@ jobs:
         uses: actions/checkout@v7
 
       - name: verify gcc
-        run: gcc -v
+        run: |
+          gcc -v
+          cmake --version
 
-      - name: verify cmake
-        run: cmake --version
-
-      # - name: setup python
-      #   uses: actions/setup-python@v6
-      #   with:
-      #     python-version: 3.12
-
-      # - name: install dependencies
-      #   run: pip install -r requirements.txt
-
-      # - name: run test
-      #   run: pytest scripts/main.py
+      - name: build
+        run: |
+          mkdir build
+          cd build
+          cmake -G"Ninja" ..
+          cmake --build .
+      
+      - name: test
+        run: pwd
