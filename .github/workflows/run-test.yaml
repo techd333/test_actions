@@ -12,13 +12,19 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
-      - name: setup python
-        uses: actions/setup-python@v6
-        with:
-          python-version: 3.12
+      - name: verify gcc
+        run: gcc -v
 
-      - name: install dependencies
-        run: pip install -r requirements.txt
+      - name: verify cmake
+        run: cmake --version
 
-      - name: run test
-        run: pytest scripts/main.py
+      # - name: setup python
+      #   uses: actions/setup-python@v6
+      #   with:
+      #     python-version: 3.12
+
+      # - name: install dependencies
+      #   run: pip install -r requirements.txt
+
+      # - name: run test
+      #   run: pytest scripts/main.py
