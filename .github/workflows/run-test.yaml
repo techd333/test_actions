@@ -12,6 +12,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
+      - name: install deps
+        run: |
+          sudo apt update
+          sudo apt install lcov -y
+
       - name: verify tools
         run: |
           set -x
