@@ -30,7 +30,7 @@ jobs:
           set -x
           mkdir build
           cd build
-          cmake -G"Ninja" .. -DCMAKE_BUILD_TYPE Debug
+          cmake -G"Ninja" .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
       
       - name: test
