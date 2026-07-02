@@ -16,14 +16,23 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(app src/main.cc)
-
-target_compile_options(app PRIVATE
-  --coverage
+add_library(appli
+  src/app.cc
 )
 
-target_link_options(app PRIVATE
-  --coverage
+target_include_directories(appli PUBLIC
+  src
+)
+
+target_compile_options(appli PRIVATE --coverage)
+target_link_options(appli PUBLIC --coverage)
+
+
+add_executable(app src/main.cc)
+
+target_link_libraries(app
+  PRIVATE
+  appli
 )
 
 add_executable(app_test
@@ -32,16 +41,10 @@ add_executable(app_test
 
 target_link_libraries(app_test
   PRIVATE
-    GTest::gtest_main
+  appli
+  GTest::gtest_main
 )
 
-target_compile_options(app_test PRIVATE
-  --coverage
-)
-
-target_link_options(app_test PRIVATE
-  --coverage
-)
 
 include(GoogleTest)
 

@@ -1,6 +1,7 @@
-#include <iostream>
+#include <stdio.h>
+#include "app.h"
 
 int main(void) {
-    std::cout << "test" << std::endl;
+    printf("add 1 2 = %d", add(1, 2));
     return 0;
 }
