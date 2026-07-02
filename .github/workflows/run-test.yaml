@@ -12,18 +12,20 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
-      - name: verify gcc
+      - name: verify tools
         run: |
           set -x
           gcc -v
           cmake --version
+          lcov --version
+          gcov --version
 
       - name: build
         run: |
           set -x
           mkdir build
           cd build
-          cmake -G"Ninja" ..
+          cmake -G"Ninja" .. -DCMAKE_BUILD_TYPE Debug
           cmake --build .
       
       - name: test
@@ -31,3 +33,6 @@ jobs:
           set -x
           cd build
           ./app_test
+          echo "measure coverage..."
+          lcov -c -d . -o coverage.info  --ignore-errors mismatc
+          genhtml -o coverage_report coverage.info

@@ -18,6 +18,14 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(app src/main.cc)
 
+target_compile_options(app PRIVATE
+  --coverage
+)
+
+target_link_options(app PRIVATE
+  --coverage
+)
+
 add_executable(app_test
   tests/main_test.cc
 )
@@ -25,6 +33,14 @@ add_executable(app_test
 target_link_libraries(app_test
   PRIVATE
     GTest::gtest_main
+)
+
+target_compile_options(app_test PRIVATE
+  --coverage
+)
+
+target_link_options(app_test PRIVATE
+  --coverage
 )
 
 include(GoogleTest)
