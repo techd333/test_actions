@@ -39,5 +39,5 @@ jobs:
           cd build
           ./app_test
           echo "measure coverage..."
-          lcov -c -d . -o coverage.info  --ignore-errors mismatc
+          lcov -c -d . -o coverage.info --ignore-errors mismatch
           genhtml -o coverage_report coverage.info
